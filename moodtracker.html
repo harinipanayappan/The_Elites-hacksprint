@@ -1,0 +1,232 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MINDMENTOR</title>
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="mood-tracker">
+      <h1>Daily Mood Tracker</h1>
+      <form id="mood-form">
+        <label for="mood-rating" class="mood-rating">Rate your mood today:</label>
+        <br>
+        <input type="radio" class="mood-1" name="mood" value="1"> 1 (Very bad)
+        <input type="radio" class="mood-2" name="mood" value="2"> 2 (Bad)
+        <input type="radio" class="mood-3" name="mood" value="3"> 3 (Neutral)
+        <input type="radio" class="mood-4" name="mood" value="4"> 4 (Good)
+        <input type="radio" class="mood-5" name="mood" value="5"> 5 (Very good)
+        <br><br>
+        <label for="mood-details" class="mood-rating">Share more about your mood today:</label>
+        <br>
+        <textarea id="mood-details" rows="4" cols="50"></textarea>
+        <br>
+        <button type="submit" id="save-submit-button">Save & Submit</button>
+      </form>
+    </div>
+
+    <!-- Add a separate container for the chart -->
+    <div class="chart-container">
+      <canvas id="moodChart" width="400" height="200"></canvas>
+    </div>
+  </div>
+
+  <script>
+    
+    function updateMoodGraph() {
+      const storedMoodData = JSON.parse(localStorage.getItem('moodData')) || {};
+      const dates = Object.keys(storedMoodData);
+      const moodValues = dates.map(date => storedMoodData[date].mood);
+  
+    
+      const moodChartCanvas = document.getElementById('moodChart');
+  
+  
+      const existingChart = Chart.getChart(moodChartCanvas);
+  
+     
+      if (existingChart) {
+        existingChart.data.labels = dates;
+        existingChart.data.datasets[0].data = moodValues;
+        existingChart.update(); 
+      } else {
+        
+        const moodChart = new Chart(moodChartCanvas, {
+          type: 'line',
+          data: {
+            labels: dates,
+            datasets: [{
+              label: 'Mood Ratings',
+              data: moodValues,
+              borderColor: 'rgba(75, 192, 192, 1)',
+              borderWidth: 2,
+              fill: false
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+                max: 5
+              }
+            }
+          }
+        });
+      }
+    }
+  
+   
+    document.getElementById('mood-form').addEventListener('submit', function (event) {
+      event.preventDefault();
+  
+     
+      const currentDate = new Date().toLocaleDateString();
+      const storedMoodData = JSON.parse(localStorage.getItem('moodData')) || {};
+  
+      if (storedMoodData[currentDate]) {
+        
+        alert('You have already submitted a mood rating for today.');
+      } else {
+        
+        const moodRating = document.querySelector('input[name="mood"]:checked').value;
+        const moodDetails = document.getElementById('mood-details').value;
+  
+      
+        storedMoodData[currentDate] = { mood: moodRating, details: moodDetails };
+        localStorage.setItem('moodData', JSON.stringify(storedMoodData));
+  
+        
+        updateMoodGraph();
+      }
+    });
+  
+   
+    updateMoodGraph();
+  </script>
+  
+  
+  
+  
+  
+  
+  
+  <style>
+    /* Base styles */
+    body {
+      font-family: 'Raleway', sans-serif;
+      margin: 0;
+      background-color: #fbfffb;
+      background-size: cover;
+      background-position: center;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Main container */
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Mood tracker container */
+    .mood-tracker {
+      background-color: #eeeaea;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      margin-bottom: 20px;
+      height:500px;
+    }
+
+    /* Chart container */
+    .chart-container {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 10px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      width: 500px; /* Adjust the width as needed */
+      height: 250px; /* Adjust the height as needed */
+    }
+    /* Title */
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      color: #222;
+    }
+
+    /* Mood rating section */
+    .mood-rating {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 15px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    label {
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    input[type="radio"]:checked+label {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    /* Text area */
+    textarea {
+      width: 100%;
+      height: 150px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      resize: vertical;
+    }
+
+    /* Submit button */
+    button {
+      padding: 10px 20px;
+      background-color: #53af76;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: #3e8e41;
+    }
+
+   
+    .mood-tracker {
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+
+</body>
+
+</html>
+
