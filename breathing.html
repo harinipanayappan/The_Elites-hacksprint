@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focused Breathing</title>
+    <style>
+        :root {
+            --primary-color: lightsteelblue;
+            --secondary-color: lightpink;
+            --large: 200px;
+            --small: 10px;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            display: grid;
+            overflow: hidden;
+            justify-content: center;
+            align-content: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            font-family: "Work Sans", Arial, Helvetica, sans-serif;
+        }
+
+        main {
+            height: 300px;
+            width: 100vw;
+            display: grid;
+            justify-content: center;
+            align-items: center;
+        }
+
+        div {
+            background-color: var(--primary-color);
+            width: var(--small);
+            height: var(--small);
+            border-radius: calc(var(--small) / 2);
+            display: inline-block;
+            animation: breath 10s ease infinite none running;
+        }
+
+        h1, p {
+            color: #6E7B8B;
+            text-align: center;
+        }
+
+        @keyframes breath {
+            40%, 50% {
+                background-color: var(--secondary-color);
+                width: var(--large);
+                height: var(--large);
+                border-radius: calc(var(--large) / 2);
+            }
+        }
+
+        #unmute-button {
+            display: none;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #6E7B8B;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #unmute-button.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Focused Breathing</h1>
+    <main>
+        <div></div>
+    </main>
+    <p>Breathe in through the nose as the circle expands. <br>
+       Hold, and release through the mouth as it contracts. <br> Repeat as needed.</p>
+
+    <audio id="background-audio" autoplay loop muted>
+        <source src="https://firebasestorage.googleapis.com/v0/b/my-first-projects-8b061.appspot.com/o/mountain-forest-high-quality-sound-176826.mp3?alt=media&token=4517b77b-3fd9-4a3a-b202-5dff551d02cc" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <button id="unmute-button" class="show">Unmute</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const audio = document.getElementById('background-audio');
+            const unmuteButton = document.getElementById('unmute-button');
+
+            audio.muted = true;
+            audio.play().catch(error => {
+                console.log('Autoplay prevented: ', error);
+                unmuteButton.classList.add('show');
+            });
+
+            unmuteButton.addEventListener('click', () => {
+                audio.muted = false;
+                audio.play().then(() => {
+                    unmuteButton.classList.remove('show');
+                }).catch(error => {
+                    console.log('Playback error: ', error);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+
