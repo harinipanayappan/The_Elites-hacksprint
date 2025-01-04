@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MINDMENTOR</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Additional styles for the appointment form popup */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+    
+<div class="container">
+    <h1>Doctor Appointment</h1>
+    
+    <div class="doctor" id="doctornaveenkumar">
+        <h2>Dr.Naveen Kumar V</h2>
+        <p>Speciality: Psychiatrist</p>
+        <p>Location: Manam Behavioural Medicine Clinic</p>
+        <p>Contact: 794-270-0748</p>
+        <button class="schedule-button" data-doctor-name="Dr. Naveen" onclick="openAppointmentForm('Dr. Naveen')">Schedule Appointment</button>
+    </div>
+
+    <div class="doctor" id="doctorkrishnashankar">
+        <h2>Dr. G Krishna Shankar</h2>
+        <p>Speciality: Psychologist</p>
+        <p>Location: Sri Ramakrishna Hospital</p>
+        <p>Contact: 794-742-5703</p>
+        <button class="schedule-button" data-doctor-name="Dr. Krishna" onclick="openAppointmentForm('Dr. Krishna')">Schedule Appointment</button>
+    </div>
+    <div class="doctor" id="doctorvarshaviswanathan">
+        <h2>Dr.Varsha Viswanathan</h2>
+        <p>Speciality: Diabetologist </p>
+        <p>Location: G Kuppuswamy Naidu Memorial Hospital</p>
+        <p>Contact: 794-714-9358</p>
+        <button class="schedule-button" data-doctor-name="Dr. Varsha" onclick="openAppointmentForm('Dr. Varsha')">Schedule Appointment</button>
+    </div>
+    <div class="doctor" id="doctornivedhithaselvakumar ">
+        <h2>Dr.Nivedhitha Selvakumar </h2>
+        <p>Specialty: Psychiatrist</p>
+        <p>Location: Kovai Medical Center And Hospital</p>
+        <p>Contact: 794-741-3452</p>
+        <button class="schedule-button" data-doctor-name="Dr. Nivedhitha" onclick="openAppointmentForm('Dr. Nivedhitha')">Schedule Appointment</button>
+    </div>
+
+    <!-- Add more doctor information here if needed -->
+</div>
+
+<div id="appointmentFormPopup" class="popup">
+    <span class="close" onclick="closeAppointmentForm()">&times;</span>
+    <h2>Book an Appointment</h2>
+    <form id="appointmentForm">
+        <!-- Include your appointment form fields here -->
+        <input type="hidden" id="doctorName" name="doctorName">
+        <label for="fullName">Full Name:</label>
+        <input type="text" id="fullName" name="fullName" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone" required pattern="\d{10}" title="Please enter a 10-digit phone number">
+
+        <label for="appointmentDate">Appointment Date:</label>
+        <input type="date" id="appointmentDate" name="appointmentDate" required>
+
+        <label for="message">Additional Notes:</label>
+        <textarea id="message" name="message" rows="4"></textarea>
+
+        <button type="submit">Book Appointment</button>
+    </form>
+</div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBHagI9ZENewLr7c32RuHiRSiGuuUysW6Y",
+      authDomain: "collegeproject-698eb.firebaseapp.com",
+      databaseURL: "https://collegeproject-698eb-default-rtdb.firebaseio.com",
+      projectId: "collegeproject-698eb",
+      storageBucket: "collegeproject-698eb.appspot.com",
+      messagingSenderId: "819221579148",
+      appId: "1:819221579148:web:15eecb0c6c77daf36c02a9"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    const auth = firebase.auth();
+
+    function openAppointmentForm(doctorName) {
+        const appointmentFormPopup = document.getElementById('appointmentFormPopup');
+        appointmentFormPopup.style.display = 'block';
+
+        // Set the doctor's name in the hidden input field
+        document.getElementById('doctorName').value = doctorName;
+
+        // Clear other form fields if needed
+        document.getElementById('fullName').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('phone').value = '';
+        document.getElementById('appointmentDate').value = '';
+        document.getElementById('message').value = '';
+
+        // Set min attribute for the appointmentDate input field
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('appointmentDate').setAttribute('min', today);
+    }
+
+    function closeAppointmentForm() {
+        const appointmentFormPopup = document.getElementById('appointmentFormPopup');
+        appointmentFormPopup.style.display = 'none';
+    }
+
+    document.getElementById('appointmentForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const fullName = document.getElementById('fullName').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const appointmentDate = document.getElementById('appointmentDate').value;
+        const message = document.getElementById('message').value;
+        const doctorName = document.getElementById('doctorName').value;
+
+        // Validate phone number
+        const phonePattern = /^\d{10}$/;
+        if (!phonePattern.test(phone)) {
+            alert('Please enter a valid 10-digit phone number.');
+            return;
+        }
+
+        // Create an object with appointment data
+        const appointmentData = {
+            doctor: doctorName,
+            fullName: fullName,
+            email: email,
+            phone: phone,
+            appointmentDate: appointmentDate,
+            message: message,
+            scheduledAt: firebase.firestore.FieldValue.serverTimestamp()
+        };
+
+        // Store the appointment data in Firestore
+        const user = auth.currentUser;
+        db.collection('users').doc(user.uid).collection('appointments1').add(appointmentData)
+            .then(() => {
+                alert('Appointment booked successfully!');
+                closeAppointmentForm();
+            })
+            .catch((error) => {
+                console.error('Error booking appointment: ', error);
+            });
+    });
+  </script>
+</body>
+</html>
