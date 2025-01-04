@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MINDMENTOR</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Goal Tracking and Challenges</h1>
+        <div class="tabs">
+            <button id="goals-tab" class="tab-btn active" onclick="showGoals()">Goals</button>
+            <button id="challenges-tab" class="tab-btn" onclick="showChallenges()">Challenges</button>
+        </div>
+        <div id="goals-container"></div>
+        <div id="challenges-container" style="display: none;"></div>
+        <div id="add-goal-container" style="display: none;">
+            <!-- Add Goal Button -->
+            <button class="add-goal-btn" onclick="addGoal()">Add New Goal</button>
+        </div>
+    </div>
+
+    <script>
+        // Sample challenges presented to the user
+        const challenges = [
+            { title: 'DAY-1', description: 'Practice deep breathing for 5 minutes', question: 'How did you feel after practicing deep breathing?' },
+            { title: 'DAY-2', description: 'Take a 10-minute walk outside', question: 'What did you observe during your walk?' },
+            { title: 'DAY-3', description: 'Gift yourself something you wanted for a longtime', question: 'what did u gift yourself?' },
+            { title: 'DAY-4', description: 'Try a new hobby or activity', question: 'what was it that you tried?' },
+            { title: 'DAY-5', description: 'Declutter and organize a small area of your home', question: 'For how long have you been thinking to declutter?' },
+            { title: 'DAY-6', description: 'Listen to your favourite music for 20 minutes', question: 'Which genre songs did you listen to?' },
+            { title: 'DAY-7', description: 'Cook a healthy meal from scratch', question: 'What did you cook?' },
+            { title: 'DAY-8', description: 'Write a thing that you want to forget and flush it', question: 'Did you feel better after doing so?' },
+            { title: 'DAY-9', description: 'Create a vision board with your goals and aspirations', question: 'What is the top goal in your list?' },
+            { title: 'DAY-10', description: 'Spend quality time with a loved one', question: 'With whom did you spend time?' },
+            { title: 'DAY-11', description: 'Do a craft watching tutorial', question: 'What did you do?' },
+            { title: 'DAY-12', description: 'Volunteer for a cause you care about', question: 'What was the cause?' },
+            { title: 'DAY-13', description: 'Spend 15 minutes in nature', question: 'How did you feel?' },
+            { title: 'DAY-14', description: 'Write a letter of gratitude to someone special', question: 'Who was it?' },
+            { title: 'DAY-15', description: 'Try a new exercise or workout routine', question: 'Did you feel fresh of tired after doing it?' },
+            { title: 'DAY-16', description: 'Set boundaries with someone or something that causes stress', question: 'Were you successful in doing so?' },
+            { title: 'DAY-17', description: 'Practice positive self-talk for a day', question: 'Did you feel any difference?' },
+            { title: 'DAY-18', description: 'Do a random act of kindness for a stranger', question: 'What did you do?' },
+            { title: 'DAY-19', description: 'Rewatch your favourite childhood movie',question:'How long had it been since you watched it?' },
+            { title: 'DAY-20', description: 'Do not spend money today', question: 'Were you able to complete it?' },
+            { title: 'DAY-21', description: 'Plant a tree today', question: 'what did you plant?' },
+            { title: 'DAY-22', description: 'Have a digital detox day', question: 'How did you feel at the end of the day?' },
+            { title: 'DAY-23', description: 'Watch a ted talk video', question: 'What did you gain watching it?' },
+            { title: 'DAY-24', description: 'Write down 5 things you are looking forward to do', question: 'What is the first one in the list?' },
+            { title: 'DAY-25', description: 'Talk a long drive alone', question: 'How far did you go?' },
+            { title: 'DAY-26', description: 'Try to complete a hard brain teaser or puzzle', question: 'Were you able to complete it?' },
+            { title: 'DAY-27', description: 'Take a look at your childhood photo album', question: 'How was it regaining all the old memories?' },
+            { title: 'DAY-28', description: 'Watch the sunrise or sunset,even star gazing would do the job', question: 'How did you feel?' },
+            { title: 'DAY-29', description: 'Start Reading a  book you find interesting', question: 'How many pages did you complete today?' },
+            { title: 'DAY-30', description: 'Work on painting a picture ', question: 'How long did it take for you to paint the picture?' },
+        ];
+
+        // Function to show goals
+        function showGoals() {
+            document.getElementById('goals-tab').classList.add('active');
+            document.getElementById('challenges-tab').classList.remove('active');
+            document.getElementById('challenges-container').style.display = 'none';
+            document.getElementById('goals-container').style.display = 'block';
+            document.getElementById('add-goal-container').style.display = 'block';
+        }
+
+        // Function to show challenges
+        function showChallenges() {
+            document.getElementById('challenges-tab').classList.add('active');
+            document.getElementById('goals-tab').classList.remove('active');
+            document.getElementById('challenges-container').style.display = 'block';
+            document.getElementById('goals-container').style.display = 'none';
+            document.getElementById('add-goal-container').style.display = 'none';
+        }
+
+        // Function to populate goals container
+        function populateGoals() {
+            const goalsContainer = document.getElementById('goals-container');
+            goalsContainer.innerHTML = ''; // Clear existing content
+            // Sample user goals
+            const userGoals = JSON.parse(localStorage.getItem('userGoals')) || [];
+            userGoals.forEach((goal, index) => {
+                const goalDiv = createGoalDiv(goal, index);
+                goalsContainer.appendChild(goalDiv);
+            });
+        }
+
+        // Function to create a goal div
+        function createGoalDiv(goal, index) {
+            const goalDiv = document.createElement('div');
+            goalDiv.classList.add('goal');
+            goalDiv.innerHTML = `
+                <h2>${goal.title}</h2>
+                <p>${goal.description}</p>
+                <button onclick="completeGoal(${index})">Completed</button>
+            `;
+            return goalDiv;
+        }
+
+        // Function to complete a goal
+        function completeGoal(index) {
+            const userGoals = JSON.parse(localStorage.getItem('userGoals')) || [];
+            userGoals.splice(index, 1);
+            localStorage.setItem('userGoals', JSON.stringify(userGoals));
+            populateGoals();
+        }
+
+        // Function to add a new goal
+        function addGoal() {
+            const title = prompt('Enter goal title:');
+            const description = prompt('Enter goal description:');
+            const newGoal = { title, description };
+            const userGoals = JSON.parse(localStorage.getItem('userGoals')) || [];
+            userGoals.push(newGoal);
+            localStorage.setItem('userGoals', JSON.stringify(userGoals));
+            populateGoals();
+        }
+
+        // Function to populate challenges container
+        // Function to populate challenges container
+function populateChallenges() {
+    const challengesContainer = document.getElementById('challenges-container');
+    challengesContainer.innerHTML = ''; // Clear existing content
+    
+    // Get the current day
+    const today = new Date().getDate();
+
+    challenges.forEach((challenge, index) => {
+        // Only display past challenges and enable/disable their completion buttons accordingly
+        if (index + 1 < today) {
+            const challengeDiv = createChallengeDiv(challenge, index);
+            const completeButton = challengeDiv.querySelector(`#complete-${index}`);
+            const answerInput = challengeDiv.querySelector(`#answer-${index}`);
+            answerInput.disabled = true;
+            completeButton.disabled = true;
+            completeButton.innerHTML = 'Expired';
+            completeButton.style.cursor = 'not-allowed';
+            challengesContainer.appendChild(challengeDiv);
+        } else if (index + 1 === today) { // Display current day's challenge
+            const challengeDiv = createChallengeDiv(challenge, index);
+            challengesContainer.appendChild(challengeDiv);
+        }
+        // Future challenges will be skipped entirely
+    });
+}
+
+
+// Function to create a challenge div
+function createChallengeDiv(challenge, index) {
+    const challengeDiv = document.createElement('div');
+    challengeDiv.classList.add('challenge');
+    challengeDiv.innerHTML = `
+        <h2>${challenge.title}</h2>
+        <p>${challenge.description}</p>
+        <p><strong>Question:</strong> ${challenge.question}</p>
+        <input type="text" id="answer-${index}" placeholder="Your answer..."/>
+        <button id="complete-${index}" class="complete-btn" disabled>Completed</button>
+    `;
+
+    // Add an event listener to the input field
+    const answerInput = challengeDiv.querySelector(`#answer-${index}`);
+    answerInput.addEventListener('input', function() {
+        const answer = this.value.trim();
+        const completeButton = challengeDiv.querySelector(`#complete-${index}`);
+        completeButton.disabled = !answer;
+    });
+
+    // Add event listener for completing the challenge
+    const completeButton = challengeDiv.querySelector(`#complete-${index}`);
+    completeButton.addEventListener('click', function() {
+        completeChallenge(index);
+    });
+
+    return challengeDiv;
+}
+
+populateGoals();
+populateChallenges();
+
+// Initialize points and streak in localStorage
+localStorage.setItem('points', 0);
+localStorage.setItem('streak', 0);
+localStorage.setItem('lastCompletedDay', 0);
+
+// Function to complete a challenge
+function completeChallenge(index) {
+    const today = new Date().getDate(); // Get the current day of the month
+    const challengeDay = index + 1; // Challenges are 0-indexed, days are 1-indexed
+    const answer = document.getElementById(`answer-${index}`).value.trim();
+    if (answer && today === challengeDay) { // Only enable if it's the present day's challenge
+        const completeButton = document.getElementById(`complete-${index}`);
+        completeButton.innerHTML = '✓';
+        completeButton.disabled = true;
+        completeButton.style.cursor = 'default';
+        
+        // Add points for completing today's challenge
+        let points = parseInt(localStorage.getItem('points')) || 0;
+        points++;
+        localStorage.setItem('points', points);
+        
+        // Check streak
+        let streak = parseInt(localStorage.getItem('streak')) || 0;
+        const lastCompletedDay = parseInt(localStorage.getItem('lastCompletedDay')) || 0;
+        if (today === lastCompletedDay + 1) { // If consecutive day
+            streak++;
+            localStorage.setItem('streak', streak);
+            localStorage.setItem('lastCompletedDay', today);
+            alert(`Congratulations! You have completed today's challenge and earned 1 point.\nYou are on a streak! Your current streak is ${streak} days.`);
+        } else if (today > lastCompletedDay + 1) { // If the streak is reset
+            localStorage.setItem('streak', 1);
+            localStorage.setItem('lastCompletedDay', today);
+            alert(`Congratulations! You have completed today's challenge and earned 1 point.`);
+        } else { // If completed on the same day without resetting the streak
+            alert(`Congratulations! You have completed today's challenge and earned 1 point.`);
+        }
+    }
+}
+
+
+
+    </script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .tabs {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            background-color: green;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .tab-btn.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .goal,
+        .challenge {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #555;
+        }
+
+        p {
+            margin: 5px 0;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .add-goal-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            margin-top: 10px;
+            cursor: pointer;
+            margin-left: 120px;
+        }
+
+        .add-goal-btn:hover {
+            background-color: #45a049;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</body>
+
+</html>
