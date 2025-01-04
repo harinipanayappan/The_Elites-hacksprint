@@ -31,4 +31,13 @@ Purpose: Supports users in achieving mental health goals by providing a structur
 Features:
 * Goal setting interface with customizable objectives.
 * Progress monitoring and reminders to keep users on track.
-* Inbuilt 30-day challenges for users 
+* Inbuilt 30-day challenges for users
+
+### 4) Mood Tracker Page
+
+Purpose: Enables users to identify trends in their mood, recognize triggers, and take proactive steps to improve their mental health.
+
+Features:
+* Daily mood logging with a simple and intuitive interface.
+* Visual chart and analytics to display mood trends.
+* Option to add notes for context or triggers related to specific moods. 
