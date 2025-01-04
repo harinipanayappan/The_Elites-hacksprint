@@ -40,4 +40,13 @@ Purpose: Enables users to identify trends in their mood, recognize triggers, and
 Features:
 * Daily mood logging with a simple and intuitive interface.
 * Visual chart and analytics to display mood trends.
-* Option to add notes for context or triggers related to specific moods. 
+* Option to add notes for context or triggers related to specific moods.
+
+### 5) Doctor Appointment Page
+
+Purpose: Makes it easier for users to schedule appointments with qualified professionals for further support.
+
+Features:
+* Appointment booking with date and time selection.
+* Confirmation and reminders for scheduled appointments.
+* Secure storage of appointment details and user information.
