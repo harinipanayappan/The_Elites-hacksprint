@@ -7,7 +7,7 @@ Mind Mentor is a web-based platform designed to support mental wellness. It prov
 
 ## Recent Updates
 
-1) Quiz Page for Mental State Analysis
+# 1) Quiz Page for Mental State Analysis
 
 Purpose: Analyze users' mental states through an interactive quiz.
 
@@ -15,7 +15,7 @@ Features:
 * A dynamic quiz interface.
 * Tailored feedback and resources based on quiz results.
 
-2) Focused Breathing Page
+# 2) Focused Breathing Page
 
 Purpose: Help users practice mindfulness and relaxation.
 
@@ -23,3 +23,12 @@ Features:
 * Animated breathing guide with a circle expanding and contracting for synchronization.
 * Calming background sounds for a soothing experience.
 * Simple and engaging interface.
+
+# 3) 3. Goal Tracking Page
+
+Purpose: Supports users in achieving mental health goals by providing a structured and interactive way to track progress.
+
+Features:
+* Goal setting interface with customizable objectives.
+* Progress monitoring and reminders to keep users on track.
+* Inbuilt 30-day challenges for users 
