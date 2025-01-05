@@ -76,7 +76,15 @@ Features:
 * Curated articles covering various mental health topics.
 * Read aloud feature to help users listen to the articles as well.
 
+### 9) Login Page
 
+Purpose: Enables users to log in using their Google account for a seamless experience and ensures secure data management.
+
+Features:
+* Google account authentication using Firebase.
+* User information stored securely in Firebase.
+* Real-time user data management and tracking.
+* Enhanced user experience with quick and secure login.
 
 
 
