@@ -58,3 +58,16 @@ Purpose: Encourages users to participate in community events that promote mental
 Features:
 * Event details including time, location, and registration links, displayed on a map
 * Web scraping to gather event details from trusted mental health websites for a comprehensive list.
+
+### 7) Chatbot
+
+Purpose: Helps users address their concerns, find resources, and gain insights through conversational interactions.
+
+Features:
+* Real-time responses to user queries about mental health.
+* Personalized recommendations based on user inputs.
+* Integration with OpenAI for intelligent and empathetic conversations.
+
+
+
+
