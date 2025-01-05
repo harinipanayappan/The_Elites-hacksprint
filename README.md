@@ -50,3 +50,11 @@ Features:
 * Appointment booking with date and time selection.
 * Confirmation and reminders for scheduled appointments.
 * Secure storage of appointment details and user information.
+
+### 6) Events Page
+
+Purpose: Encourages users to participate in community events that promote mental health awareness and learning.
+
+Features:
+* Event details including time, location, and registration links, displayed on a map
+* Web scraping to gather event details from trusted mental health websites for a comprehensive list.
