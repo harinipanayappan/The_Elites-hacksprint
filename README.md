@@ -5,7 +5,15 @@ About the Project
 
 Mind Mentor is a web-based platform designed to support mental wellness. It provides tools and resources to help users understand and improve their mental health. With features like mood tracking, mindfulness exercises, and AI-driven insights, the website bridges the gap in accessible mental health care. It aims to promote self-awareness, resilience, and overall well-being in a user-friendly and inclusive manner.
 
-## Recent Updates
+### STEPS TO RUN THE PROJECT:
+1)  Download the ZIP file of the project and extract it
+2)  Open it in a code editor like VS code
+3)  In the terminal, run the following commands one-by-one:
+   - python events.py
+   - python event_scraping.py
+4)  Now, open the main.html file using live server & the project will run on localhost
+
+## FEATURES:
 
 ### 1) Quiz Page for Mental State Analysis
 
