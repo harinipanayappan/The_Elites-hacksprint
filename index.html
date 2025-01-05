@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindMentor</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="login-box">
+        <h1 class="headline">WELCOME TO MIND MENTOR</h1>
+        <br>
+        <br>
+        <br>
+        <p class="login-text">Login to continue</p>
+        <div class="button-container">
+            <button class="google-sign-in-button" id="login-button">Login</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.12.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.1/firebase-messaging-compat.js"></script>
+    <script type="module" src="main.js"></script>
+    <script>
+        // Add login functionality
+        document.getElementById('login-button').addEventListener('click', () => {
+          const provider = new firebase.auth.GoogleAuthProvider();
+          firebase.auth().signInWithPopup(provider).then(result => {
+            const user = result.user;
+            console.log('User signed in:', user);
+            checkUserData(user.uid);
+          }).catch(error => {
+            console.error('Error signing in:', error);
+          });
+        });
+    
+        function checkUserData(uid) {
+          getUserData(uid).then(userData => {
+            console.log('User data:', userData);
+            if (userData && userData.quizResult) {
+              window.location.href = "main.html";
+            } else {
+              window.location.href = "quiz.html";
+            }
+          }).catch(error => {
+            console.error('Error getting user data:', error);
+          });
+        }
+    
+        function getUserData(uid) {
+          const userRef = db.collection('users').doc(uid);
+          return userRef.get().then(doc => {
+            if (doc.exists) {
+              return doc.data();
+            } else {
+              console.log('No such document!');
+              return null;
+            }
+          }).catch(error => {
+            console.error('Error getting document:', error);
+            return null;
+          });
+        }
+      </script>
+      <!-- Firebase SDK -->
+    
+      
+      
+      </body>
+
+    <!-- Styles -->
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: lavender;
+        }
+
+        .container {
+            background-color: #f0f8ff;
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .google-sign-in-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #0b121d;
+            color: white;
+            font-size: 20px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            text-decoration: none;
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+        }
+
+        .google-sign-in-button:hover {
+            background-color: #337ab7;
+        }
+    </style>
+    <script>
+      // Array of random quotes
+      const quotes = [
+          "The future belongs to those who believe in the beauty of their dreams.",
+          "Believe you can and you're halfway there.",
+          "The only way to do great work is to love what you do.",
+          "The future belongs to those who believe in the beauty of their dreams.",
+          "In the middle of difficulty lies opportunity.",
+          "The only limit to our realization of tomorrow will be our doubts of today."
+      ];
+  
+      document.getElementById('login-button').addEventListener('click', () => {
+          // Check if the browser supports notifications
+          if (!("Notification" in window)) {
+              alert("This browser does not support desktop notifications.");
+              return;
+          }
+  
+          // Request permission from the user
+          if (Notification.permission === "granted") {
+              // If permission is already granted
+              showNotification();
+          } else if (Notification.permission !== "denied") {
+              // If permission is not denied, request permission
+              Notification.requestPermission().then(permission => {
+                  if (permission === "granted") {
+                      showNotification();
+                  }
+              });
+          }
+      });
+  
+      function showNotification() {
+          // Generate a random index to select a random quote from the array
+          const randomIndex = Math.floor(Math.random() * quotes.length);
+          const randomQuote = quotes[randomIndex];
+  
+          const options = {
+              body: randomQuote,
+          };
+          const notification = new Notification("", options);
+  
+          // Optional: Handle notification click event
+          notification.onclick = () => {
+              window.open("https://collegeproject-698eb.web.app/"); // Replace with your desired URL
+          };
+      }
+  </script>
+  
+</html>
