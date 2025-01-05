@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_bd33562100821ee7bf979d377467922c {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_bd33562100821ee7bf979d377467922c" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_bd33562100821ee7bf979d377467922c = L.map(
+                "map_bd33562100821ee7bf979d377467922c",
+                {
+                    center: [11.0, 76.9667],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 12,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_d457ac4c70df77b956b3c143099948fd = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+        
+    
+            tile_layer_d457ac4c70df77b956b3c143099948fd.addTo(map_bd33562100821ee7bf979d377467922c);
+        
+    
+            var marker_deeb57d498259720b94c1116d576cd31 = L.marker(
+                [51.9179806, 5.8587524],
+                {}
+            ).addTo(map_bd33562100821ee7bf979d377467922c);
+        
+    
+        var popup_02be93c2c694bc112b162482df823048 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_0800472af0559b4bc088a263f8879daa = $(`<div id="html_0800472af0559b4bc088a263f8879daa" style="width: 100.0%; height: 100.0%;"><b>The Athletic Knee</b><br>Sun, 16 Jun<br>GD Auditorium</div>`)[0];
+                popup_02be93c2c694bc112b162482df823048.setContent(html_0800472af0559b4bc088a263f8879daa);
+            
+        
+
+        marker_deeb57d498259720b94c1116d576cd31.bindPopup(popup_02be93c2c694bc112b162482df823048)
+        ;
+
+        
+    
+    
+            var marker_2d49110e8863c25683bf67419fffe313 = L.marker(
+                [11.0422285, 77.0264631518096],
+                {}
+            ).addTo(map_bd33562100821ee7bf979d377467922c);
+        
+    
+        var popup_8f06264191e9c94e6ef0dd959569cd24 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_4e162c63f7ca6bc4e19f477309617f28 = $(`<div id="html_4e162c63f7ca6bc4e19f477309617f28" style="width: 100.0%; height: 100.0%;"><b>KODEX -  2024</b><br>03-04 Aug<br>Codissia Trade Fair Complex</div>`)[0];
+                popup_8f06264191e9c94e6ef0dd959569cd24.setContent(html_4e162c63f7ca6bc4e19f477309617f28);
+            
+        
+
+        marker_2d49110e8863c25683bf67419fffe313.bindPopup(popup_8f06264191e9c94e6ef0dd959569cd24)
+        ;
+
+        
+    
+    
+            var marker_9e7b42dffa896c8e22c69d9b34fa8104 = L.marker(
+                [11.002246849999999, 76.97346503365749],
+                {}
+            ).addTo(map_bd33562100821ee7bf979d377467922c);
+        
+    
+        var popup_9f84dd7554aeac47f91df69f30c1b121 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_e83b22813ecebfa909c60840a9fb5f39 = $(`<div id="html_e83b22813ecebfa909c60840a9fb5f39" style="width: 100.0%; height: 100.0%;"><b>Asia Jewels Show 2024-Coimbatore</b><br>14-16 Jun<br>Vivanta Coimbatore</div>`)[0];
+                popup_9f84dd7554aeac47f91df69f30c1b121.setContent(html_e83b22813ecebfa909c60840a9fb5f39);
+            
+        
+
+        marker_9e7b42dffa896c8e22c69d9b34fa8104.bindPopup(popup_9f84dd7554aeac47f91df69f30c1b121)
+        ;
+
+        
+    
+    
+            var marker_b55e7521168bde33e802e457e1a03c75 = L.marker(
+                [11.0422285, 77.0264631518096],
+                {}
+            ).addTo(map_bd33562100821ee7bf979d377467922c);
+        
+    
+        var popup_7e8fc2561a96891d8f9a39461fa1ade3 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_29c9e1ffd6f244e444a84227c1d2b937 = $(`<div id="html_29c9e1ffd6f244e444a84227c1d2b937" style="width: 100.0%; height: 100.0%;"><b>AUTOROBOT 2024 Expo - Coimbatore</b><br>01-03 Aug<br>Codissia Trade Fair Complex</div>`)[0];
+                popup_7e8fc2561a96891d8f9a39461fa1ade3.setContent(html_29c9e1ffd6f244e444a84227c1d2b937);
+            
+        
+
+        marker_b55e7521168bde33e802e457e1a03c75.bindPopup(popup_7e8fc2561a96891d8f9a39461fa1ade3)
+        ;
+
+        
+    
+    
+            var marker_06a5275aebb8f3d001446af5248374a5 = L.marker(
+                [11.0018115, 76.9628425],
+                {}
+            ).addTo(map_bd33562100821ee7bf979d377467922c);
+        
+    
+        var popup_38bfd1d858a69d975154a006c4b4484c = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f38f5d94990899c7c45d3d8170f2ccd7 = $(`<div id="html_f38f5d94990899c7c45d3d8170f2ccd7" style="width: 100.0%; height: 100.0%;"><b>Reliance Nippon Life Insurance</b><br>Fri, 31 May<br>Coimbatore</div>`)[0];
+                popup_38bfd1d858a69d975154a006c4b4484c.setContent(html_f38f5d94990899c7c45d3d8170f2ccd7);
+            
+        
+
+        marker_06a5275aebb8f3d001446af5248374a5.bindPopup(popup_38bfd1d858a69d975154a006c4b4484c)
+        ;
+
+        
+    
+    
+            var marker_9a8c67b424f74073355c2b662cb72b55 = L.marker(
+                [11.0422285, 77.0264631518096],
+                {}
+            ).addTo(map_bd33562100821ee7bf979d377467922c);
+        
+    
+        var popup_7d04829fa3c2743041c8314d16869ef0 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_e7dafe62f0f841c515927e4ce9a99594 = $(`<div id="html_e7dafe62f0f841c515927e4ce9a99594" style="width: 100.0%; height: 100.0%;"><b>INDIA HORECA EXPO 2024</b><br>03-05 Jul<br>Codissia Trade Fair Complex, Tamilnadu, India</div>`)[0];
+                popup_7d04829fa3c2743041c8314d16869ef0.setContent(html_e7dafe62f0f841c515927e4ce9a99594);
+            
+        
+
+        marker_9a8c67b424f74073355c2b662cb72b55.bindPopup(popup_7d04829fa3c2743041c8314d16869ef0)
+        ;
+
+        
+    
+    
+            var marker_96ad52d3b8929e9677fe0ee13ab668c1 = L.marker(
+                [11.0422285, 77.0264631518096],
+                {}
+            ).addTo(map_bd33562100821ee7bf979d377467922c);
+        
+    
+        var popup_3f096f2c05dde7dc76416fde94e6e2ed = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_e9b42f235a9cd0c6d1c4729672f3eaa5 = $(`<div id="html_e9b42f235a9cd0c6d1c4729672f3eaa5" style="width: 100.0%; height: 100.0%;"><b>India Intex Expo 2024</b><br>28-30 Jun<br>codissia trade fair complex</div>`)[0];
+                popup_3f096f2c05dde7dc76416fde94e6e2ed.setContent(html_e9b42f235a9cd0c6d1c4729672f3eaa5);
+            
+        
+
+        marker_96ad52d3b8929e9677fe0ee13ab668c1.bindPopup(popup_3f096f2c05dde7dc76416fde94e6e2ed)
+        ;
+
+        
+    
+    
+            var marker_afd56e53eb2872ab6d595d6f1bcd0908 = L.marker(
+                [11.0422285, 77.0264631518096],
+                {}
+            ).addTo(map_bd33562100821ee7bf979d377467922c);
+        
+    
+        var popup_8241c3e024be5d40d8e17924217bdec2 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f47faee4d41f7fadcff2aa08682714d7 = $(`<div id="html_f47faee4d41f7fadcff2aa08682714d7" style="width: 100.0%; height: 100.0%;"><b>TOPACK 2024 Expo - Coimbatore</b><br>01-03 Aug<br>Codissia Trade Fair Complex</div>`)[0];
+                popup_8241c3e024be5d40d8e17924217bdec2.setContent(html_f47faee4d41f7fadcff2aa08682714d7);
+            
+        
+
+        marker_afd56e53eb2872ab6d595d6f1bcd0908.bindPopup(popup_8241c3e024be5d40d8e17924217bdec2)
+        ;
+
+        
+    
+    
+            var marker_cdd6078e8b3307c805912783919e4d61 = L.marker(
+                [11.0422285, 77.0264631518096],
+                {}
+            ).addTo(map_bd33562100821ee7bf979d377467922c);
+        
+    
+        var popup_65124ef5e83a1bdd5bd2743beb76e83d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_a7d1b646dd9cf750e1814cd3ec9e2a9b = $(`<div id="html_a7d1b646dd9cf750e1814cd3ec9e2a9b" style="width: 100.0%; height: 100.0%;"><b>INTEC 2024- Expo</b><br>06-10 Jun<br>Codissia Trade Fair Complex</div>`)[0];
+                popup_65124ef5e83a1bdd5bd2743beb76e83d.setContent(html_a7d1b646dd9cf750e1814cd3ec9e2a9b);
+            
+        
+
+        marker_cdd6078e8b3307c805912783919e4d61.bindPopup(popup_65124ef5e83a1bdd5bd2743beb76e83d)
+        ;
+
+        
+    
+    
+            var marker_bc3ab7735f0a9e67da3a5bd6e7d1bf01 = L.marker(
+                [11.0422285, 77.0264631518096],
+                {}
+            ).addTo(map_bd33562100821ee7bf979d377467922c);
+        
+    
+        var popup_eec925b00e637481a011dbda5ecbc0b8 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_0e7e8ca54434eeeaceab6842896ed686 = $(`<div id="html_0e7e8ca54434eeeaceab6842896ed686" style="width: 100.0%; height: 100.0%;"><b>INDIA WATER SHOW 2024</b><br>20-22 Jun<br>Codissia Trade Fair Complex</div>`)[0];
+                popup_eec925b00e637481a011dbda5ecbc0b8.setContent(html_0e7e8ca54434eeeaceab6842896ed686);
+            
+        
+
+        marker_bc3ab7735f0a9e67da3a5bd6e7d1bf01.bindPopup(popup_eec925b00e637481a011dbda5ecbc0b8)
+        ;
+
+        
+    
+    
+            var marker_08281bc45865ec1e26fa6fc07099aac5 = L.marker(
+                [11.0021754, 76.9654591],
+                {}
+            ).addTo(map_bd33562100821ee7bf979d377467922c);
+        
+    
+        var popup_c7f4d1964ee355cb25e35a0f1494a7e7 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_1532e31fad99e9a5ab96162c12a92218 = $(`<div id="html_1532e31fad99e9a5ab96162c12a92218" style="width: 100.0%; height: 100.0%;"><b>FOOD FEST</b><br>23-25 Jun<br>Avinashi Road</div>`)[0];
+                popup_c7f4d1964ee355cb25e35a0f1494a7e7.setContent(html_1532e31fad99e9a5ab96162c12a92218);
+            
+        
+
+        marker_08281bc45865ec1e26fa6fc07099aac5.bindPopup(popup_c7f4d1964ee355cb25e35a0f1494a7e7)
+        ;
+
+        
+    
+    
+            var marker_e8d4272db40ad8bd808e933b61597197 = L.marker(
+                [11.045985900000002, 77.02178233156889],
+                {}
+            ).addTo(map_bd33562100821ee7bf979d377467922c);
+        
+    
+        var popup_1c188bbe2b4ba21ac265b08e10c7907f = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_813950f8df0c890637f542db97f8cdc6 = $(`<div id="html_813950f8df0c890637f542db97f8cdc6" style="width: 100.0%; height: 100.0%;"><b>Magic and illusion show</b><br>1 Jun<br>Cheran maa nagar</div>`)[0];
+                popup_1c188bbe2b4ba21ac265b08e10c7907f.setContent(html_813950f8df0c890637f542db97f8cdc6);
+            
+        
+
+        marker_e8d4272db40ad8bd808e933b61597197.bindPopup(popup_1c188bbe2b4ba21ac265b08e10c7907f)
+        ;
+
+        
+    
+</script>
+</html>
