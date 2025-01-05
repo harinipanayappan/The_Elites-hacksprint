@@ -12,6 +12,7 @@ Mind Mentor is a web-based platform designed to support mental wellness. It prov
    - python events.py
    - python event_scraping.py
 4)  Now, open the main.html file using live server & the project will run on localhost
+
 (The index.html file is the login page which is implemented using firebase authentication but the api keys cannot be added here due to security, hence the login will not work and openAI key is used for chatbot, hence it will also not function as the key is not disclosed- but these features can be viewed in the video or through the link given below)
 
 The website is hosted using Firebase and the link of the website is: https://collegeproject-698eb.web.app/
