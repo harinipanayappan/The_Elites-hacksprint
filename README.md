@@ -68,6 +68,17 @@ Features:
 * Personalized recommendations based on user inputs.
 * Integration with OpenAI for intelligent and empathetic conversations.
 
+### 8) Articles Section
+
+Purpose: Helps users learn more about mental health topics, coping strategies, and wellness tips.
+
+Features:
+* Curated articles covering various mental health topics.
+* Read aloud feature to help users listen to the articles as well.
+
+
+
+
 
 
 
